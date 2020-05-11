@@ -46,10 +46,13 @@ def submit_form():
     A view to handle the contact form submission
     """
     if request.method == 'POST':
-        # Convert all form data into a dictionary
-        data = request.form.to_dict()
-        write_to_csv(data)
-        return redirect('/thankyou')
+        try:
+            # Convert all form data into a dictionary
+            data = request.form.to_dict()
+            write_to_csv(data)
+            return redirect('/thankyou')
+        except:
+            return 'Couldn\'t submit your details, please try again!'
     else:
         return 'Something went wrong, please try again!'
 
