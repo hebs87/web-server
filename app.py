@@ -8,29 +8,10 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/components')
-def components():
-    return render_template('components.html')
-
-
-@app.route('/works')
-def works():
-    return render_template('works.html')
-
-
-@app.route('/work')
-def work():
-    return render_template('work.html')
-
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+# This enables us to dynamically render our routes - it is the equivalent of having a separate view for each route
+@app.route('/<string:page_name>')
+def html_page(page_name):
+    return render_template(page_name + '.html')
 
 
 if __name__ == '__main__':
