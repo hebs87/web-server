@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -19,7 +19,13 @@ def submit_form():
     """
     A view to handle the contact form submission
     """
-    return 'Form successfully submitted!'
+    if request.method == 'POST':
+        # Convert all form data into a dictionary
+        data = request.form.to_dict()
+        print(data)
+        return redirect('/thankyou')
+    else:
+        return 'Something went wrong, please try again!'
 
 
 if __name__ == '__main__':
